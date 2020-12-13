@@ -1,0 +1,680 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>calendarTest.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">calendarTest (Dec 12, 2020 6:30:34 PM)</a> &gt; <a href="../../index.html" class="el_group">Calendar</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">default</a> &gt; <span class="el_source">calendarTest.java</span></div><h1>calendarTest.java</h1><pre class="source lang-java linenums">import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+<span class="fc" id="L5">public class calendarTest {</span>
+	
+	@Test
+	public void leapYear_1() {
+<span class="fc" id="L9">		String date = &quot;01/01/2020&quot;;</span>
+<span class="fc" id="L10">		assertTrue(CalendarCalc.leapYear(date));</span>
+<span class="fc" id="L11">	}</span>
+	
+	@Test
+	public void leapYear_2() {
+<span class="fc" id="L15">		String date = &quot;01/01/2019&quot;;</span>
+<span class="fc" id="L16">		assertFalse(CalendarCalc.leapYear(date));</span>
+<span class="fc" id="L17">	}</span>
+	
+	@Test
+	public void leapYear_3() {
+<span class="fc" id="L21">		String date = &quot;01/01/1900&quot;;</span>
+<span class="fc" id="L22">		assertFalse(CalendarCalc.leapYear(date));</span>
+<span class="fc" id="L23">	}</span>
+	
+	@Test
+	public void leapYear_4() {
+<span class="fc" id="L27">		String date = &quot;01/01/2000&quot;;</span>
+<span class="fc" id="L28">		assertTrue(CalendarCalc.leapYear(date));</span>
+<span class="fc" id="L29">	}</span>
+	
+	@Test
+	public void getDayofWeek_1() {
+<span class="fc" id="L33">		String date = &quot;13/12/2020&quot;;</span>
+<span class="pc bpc" id="L34" title="1 of 2 branches missed.">		assertTrue(CalendarCalc.getDayofWeek(date) == &quot;Sunday&quot;);</span>
+<span class="fc" id="L35">	}</span>
+	
+	@Test
+	public void getDayofWeek_2() {
+<span class="fc" id="L39">		String date = &quot;14/12/2020&quot;;</span>
+<span class="pc bpc" id="L40" title="1 of 2 branches missed.">		assertTrue(CalendarCalc.getDayofWeek(date) == &quot;Monday&quot;);</span>
+<span class="fc" id="L41">	}</span>
+	
+	@Test
+	public void getDayofWeek_3() {
+<span class="fc" id="L45">		String date = &quot;15/12/2020&quot;;</span>
+<span class="pc bpc" id="L46" title="1 of 2 branches missed.">		assertTrue(CalendarCalc.getDayofWeek(date) == &quot;Tuesday&quot;);</span>
+<span class="fc" id="L47">	}</span>
+	
+	@Test
+	public void getDayofWeek_4() {
+<span class="fc" id="L51">		String date = &quot;16/12/2020&quot;;</span>
+<span class="pc bpc" id="L52" title="1 of 2 branches missed.">		assertTrue(CalendarCalc.getDayofWeek(date) == &quot;Wednesday&quot;);</span>
+<span class="fc" id="L53">	}</span>
+	
+	@Test
+	public void getDayofWeek_5() {
+<span class="fc" id="L57">		String date = &quot;17/12/2020&quot;;</span>
+<span class="pc bpc" id="L58" title="1 of 2 branches missed.">		assertTrue(CalendarCalc.getDayofWeek(date) == &quot;Thursday&quot;);</span>
+<span class="fc" id="L59">	}</span>
+	
+	@Test
+	public void getDayofWeek_6() {
+<span class="fc" id="L63">		String date = &quot;18/12/2020&quot;;</span>
+<span class="pc bpc" id="L64" title="1 of 2 branches missed.">		assertTrue(CalendarCalc.getDayofWeek(date) == &quot;Friday&quot;);</span>
+<span class="fc" id="L65">	}</span>
+	
+	@Test
+	public void getDayofWeek_7() {
+<span class="fc" id="L69">		String date = &quot;19/12/2020&quot;;</span>
+<span class="pc bpc" id="L70" title="1 of 2 branches missed.">		assertTrue(CalendarCalc.getDayofWeek(date) == &quot;Saturday&quot;);</span>
+<span class="fc" id="L71">	}</span>
+	
+	@Test
+	public void getDay_1() {
+<span class="fc" id="L75">		String date = &quot;12/10/2020&quot;;</span>
+<span class="pc bpc" id="L76" title="1 of 2 branches missed.">		assertTrue(CalendarCalc.getDay(date) == 12);</span>
+<span class="fc" id="L77">	}</span>
+	
+	@Test
+	public void getMonth_1() {
+<span class="fc" id="L81">		String date = &quot;12/10/2020&quot;;</span>
+<span class="pc bpc" id="L82" title="1 of 2 branches missed.">		assertTrue(CalendarCalc.getMonth(date) == 10);</span>
+<span class="fc" id="L83">	}</span>
+	
+	@Test
+	public void getMonth_2() {
+<span class="fc" id="L87">		String date = &quot;01/02/2020&quot;;</span>
+<span class="pc bpc" id="L88" title="1 of 2 branches missed.">		assertTrue(CalendarCalc.getMonth(date) == 2);</span>
+<span class="fc" id="L89">	}</span>
+	
+	@Test
+	public void getYear_1() {
+<span class="fc" id="L93">		String date = &quot;01/02/2020&quot;;</span>
+<span class="pc bpc" id="L94" title="1 of 2 branches missed.">		assertTrue(CalendarCalc.getYear(date) == 2020);</span>
+<span class="fc" id="L95">	}</span>
+	
+	@Test
+	public void getDayS_1() {
+<span class="fc" id="L99">		String date = &quot;01/01/2020&quot;;</span>
+<span class="pc bpc" id="L100" title="1 of 2 branches missed.">		assertTrue(CalendarCalc.getDayS(date) == &quot;1st&quot;);</span>
+<span class="fc" id="L101">	}</span>
+	
+	@Test
+	public void getDayS_2() {
+<span class="fc" id="L105">		String date = &quot;02/01/2020&quot;;</span>
+<span class="pc bpc" id="L106" title="1 of 2 branches missed.">		assertTrue(CalendarCalc.getDayS(date) == &quot;2nd&quot;);</span>
+<span class="fc" id="L107">	}</span>
+	
+	@Test
+	public void getDayS_3() {
+<span class="fc" id="L111">		String date = &quot;21/01/2020&quot;;</span>
+<span class="pc bpc" id="L112" title="1 of 2 branches missed.">		assertTrue(CalendarCalc.getDayS(date) == &quot;21st&quot;);</span>
+<span class="fc" id="L113">	}</span>
+	@Test
+	public void getDayS_4() {
+<span class="fc" id="L116">		String date = &quot;22/01/2020&quot;;</span>
+<span class="pc bpc" id="L117" title="1 of 2 branches missed.">		assertTrue(CalendarCalc.getDayS(date) == &quot;22nd&quot;);</span>
+		
+<span class="fc" id="L119">	}</span>
+	
+	@Test
+	public void getDayS_5() {
+<span class="fc" id="L123">		String date = &quot;23/01/2020&quot;;</span>
+<span class="pc bpc" id="L124" title="1 of 2 branches missed.">		assertTrue(CalendarCalc.getDayS(date) == &quot;23rd&quot;);</span>
+<span class="fc" id="L125">	}</span>
+	
+	@Test
+	public void getDayS_6() {
+<span class="fc" id="L129">		String date = &quot;31/01/2020&quot;;</span>
+<span class="pc bpc" id="L130" title="1 of 2 branches missed.">		assertTrue(CalendarCalc.getDayS(date) == &quot;31st&quot;);</span>
+<span class="fc" id="L131">	}</span>
+	
+	@Test
+	public void getDayS_7() {
+<span class="fc" id="L135">		String date = &quot;07/01/2020&quot;;</span>
+<span class="fc" id="L136">		String check = &quot;7th&quot;;</span>
+<span class="fc" id="L137">		assertTrue((CalendarCalc.getDayS(date)).equals(check));</span>
+<span class="fc" id="L138">	}</span>
+	
+	@Test
+	public void getDayS_8() {
+<span class="fc" id="L142">		String date = &quot;03/01/2020&quot;;</span>
+<span class="fc" id="L143">		String check = &quot;3rd&quot;;</span>
+<span class="fc" id="L144">		assertTrue((CalendarCalc.getDayS(date)).equals(check));</span>
+<span class="fc" id="L145">	}</span>
+	
+	@Test
+	public void getMonthS_1() {
+<span class="fc" id="L149">		String date = &quot;01/01/2020&quot;;</span>
+<span class="pc bpc" id="L150" title="1 of 2 branches missed.">		assertTrue(CalendarCalc.getMonthS(date) == &quot;January&quot;);</span>
+<span class="fc" id="L151">	}</span>
+	
+	@Test
+	public void getMonthS_2() {
+<span class="fc" id="L155">		String date = &quot;01/02/2020&quot;;</span>
+<span class="pc bpc" id="L156" title="1 of 2 branches missed.">		assertTrue(CalendarCalc.getMonthS(date) == &quot;February&quot;);</span>
+<span class="fc" id="L157">	}</span>
+	
+	@Test
+	public void getMonthS_3() {
+<span class="fc" id="L161">		String date = &quot;01/03/2020&quot;;</span>
+<span class="pc bpc" id="L162" title="1 of 2 branches missed.">		assertTrue(CalendarCalc.getMonthS(date) == &quot;March&quot;);</span>
+<span class="fc" id="L163">	}</span>
+	
+	@Test
+	public void getMonthS_4() {
+<span class="fc" id="L167">		String date = &quot;01/04/2020&quot;;</span>
+<span class="pc bpc" id="L168" title="1 of 2 branches missed.">		assertTrue(CalendarCalc.getMonthS(date) == &quot;April&quot;);</span>
+<span class="fc" id="L169">	}</span>
+	
+	@Test
+	public void getMonthS_5() {
+<span class="fc" id="L173">		String date = &quot;01/05/2020&quot;;</span>
+<span class="pc bpc" id="L174" title="1 of 2 branches missed.">		assertTrue(CalendarCalc.getMonthS(date) == &quot;May&quot;);</span>
+<span class="fc" id="L175">	}</span>
+	
+	@Test
+	public void getMonthS_6() {
+<span class="fc" id="L179">		String date = &quot;01/06/2020&quot;;</span>
+<span class="pc bpc" id="L180" title="1 of 2 branches missed.">		assertTrue(CalendarCalc.getMonthS(date) == &quot;June&quot;);</span>
+<span class="fc" id="L181">	}</span>
+	
+	@Test
+	public void getMonthS_7() {
+<span class="fc" id="L185">		String date = &quot;01/07/2020&quot;;</span>
+<span class="pc bpc" id="L186" title="1 of 2 branches missed.">		assertTrue(CalendarCalc.getMonthS(date) == &quot;July&quot;);</span>
+<span class="fc" id="L187">	}</span>
+	
+	@Test
+	public void getMonthS_8() {
+<span class="fc" id="L191">		String date = &quot;01/08/2020&quot;;</span>
+<span class="pc bpc" id="L192" title="1 of 2 branches missed.">		assertTrue(CalendarCalc.getMonthS(date) == &quot;August&quot;);</span>
+<span class="fc" id="L193">	}</span>
+	
+	@Test
+	public void getMonthS_9() {
+<span class="fc" id="L197">		String date = &quot;01/09/2020&quot;;</span>
+<span class="pc bpc" id="L198" title="1 of 2 branches missed.">		assertTrue(CalendarCalc.getMonthS(date) == &quot;September&quot;);</span>
+<span class="fc" id="L199">	}</span>
+	
+	@Test
+	public void getMonthS_10() {
+<span class="fc" id="L203">		String date = &quot;01/10/2020&quot;;</span>
+<span class="pc bpc" id="L204" title="1 of 2 branches missed.">		assertTrue(CalendarCalc.getMonthS(date) == &quot;October&quot;);</span>
+<span class="fc" id="L205">	}</span>
+	
+	@Test
+	public void getMonthS_11() {
+<span class="fc" id="L209">		String date = &quot;01/11/2020&quot;;</span>
+<span class="pc bpc" id="L210" title="1 of 2 branches missed.">		assertTrue(CalendarCalc.getMonthS(date) == &quot;November&quot;);</span>
+<span class="fc" id="L211">	}</span>
+	
+	@Test
+	public void getMonthS_12() {
+<span class="fc" id="L215">		String date = &quot;01/12/2020&quot;;</span>
+<span class="pc bpc" id="L216" title="1 of 2 branches missed.">		assertTrue(CalendarCalc.getMonthS(date) == &quot;December&quot;);</span>
+<span class="fc" id="L217">	}</span>
+	
+	@Test
+	public void previousDate_1() {
+<span class="fc" id="L221">		String date = &quot;01/01/2020&quot;;</span>
+<span class="fc" id="L222">		String datef= &quot;Tuesday December 31st, 2019&quot;;</span>
+<span class="fc" id="L223">		assertTrue((CalendarCalc.previousDate(date)).equals(datef));</span>
+<span class="fc" id="L224">	}</span>
+	
+	@Test
+	public void previousDate_2() {
+<span class="fc" id="L228">		String date = &quot;31/01/2020&quot;;</span>
+<span class="fc" id="L229">		String datef = &quot;Thursday January 30th, 2020&quot;;</span>
+<span class="fc" id="L230">		assertTrue((CalendarCalc.previousDate(date)).equals(datef));</span>
+<span class="fc" id="L231">	}</span>
+	
+	@Test
+	public void previousDate_3() {
+<span class="fc" id="L235">		String date = &quot;01/02/2020&quot;;</span>
+<span class="fc" id="L236">		String datef = &quot;Friday January 31st, 2020&quot;;</span>
+<span class="fc" id="L237">		assertTrue((CalendarCalc.previousDate(date)).equals(datef));</span>
+<span class="fc" id="L238">	}</span>
+	
+	@Test
+	public void previousDate_4() {
+<span class="fc" id="L242">		String date = &quot;01/03/2020&quot;;</span>
+<span class="fc" id="L243">		String datef = &quot;Saturday February 29th, 2020&quot;;</span>
+<span class="fc" id="L244">		assertTrue((CalendarCalc.previousDate(date)).equals(datef));</span>
+<span class="fc" id="L245">	}</span>
+	
+	@Test
+	public void previousDate_5() {
+<span class="fc" id="L249">		String date = &quot;01/03/2019&quot;;</span>
+<span class="fc" id="L250">		String datef = &quot;Thursday February 28th, 2019&quot;;</span>
+<span class="fc" id="L251">		assertTrue((CalendarCalc.previousDate(date)).equals(datef));</span>
+<span class="fc" id="L252">	}</span>
+	
+	@Test
+	public void previousDate_6() {
+<span class="fc" id="L256">		String date = &quot;01/04/2020&quot;;</span>
+<span class="fc" id="L257">		String datef = &quot;Tuesday March 31st, 2020&quot;;</span>
+<span class="fc" id="L258">		assertTrue((CalendarCalc.previousDate(date)).equals(datef));</span>
+<span class="fc" id="L259">	}</span>
+	
+	@Test
+	public void previousDate_7() {
+<span class="fc" id="L263">		String date = &quot;01/05/2020&quot;;</span>
+<span class="fc" id="L264">		String datef = &quot;Thursday April 30th, 2020&quot;;</span>
+<span class="fc" id="L265">		assertTrue((CalendarCalc.previousDate(date)).equals(datef));</span>
+<span class="fc" id="L266">	}</span>
+	
+	@Test
+	public void previousDate_8() {
+<span class="fc" id="L270">		String date = &quot;01/06/2020&quot;;</span>
+<span class="fc" id="L271">		String datef = &quot;Sunday May 31st, 2020&quot;;</span>
+<span class="fc" id="L272">		assertTrue((CalendarCalc.previousDate(date)).equals(datef));</span>
+<span class="fc" id="L273">	}</span>
+	
+	@Test
+	public void previousDate_9() {
+<span class="fc" id="L277">		String date = &quot;01/07/2020&quot;;</span>
+<span class="fc" id="L278">		String datef = &quot;Tuesday June 30th, 2020&quot;;</span>
+<span class="fc" id="L279">		assertTrue((CalendarCalc.previousDate(date)).equals(datef));</span>
+<span class="fc" id="L280">	}</span>
+	
+	@Test
+	public void previousDate_10() {
+<span class="fc" id="L284">		String date = &quot;01/08/2020&quot;;</span>
+<span class="fc" id="L285">		String datef = &quot;Friday July 31st, 2020&quot;;</span>
+<span class="fc" id="L286">		assertTrue((CalendarCalc.previousDate(date)).equals(datef));</span>
+<span class="fc" id="L287">	}</span>
+	
+	@Test
+	public void previousDate_11() {
+<span class="fc" id="L291">		String date = &quot;01/09/2020&quot;;</span>
+<span class="fc" id="L292">		String datef = &quot;Monday August 31st, 2020&quot;;</span>
+<span class="fc" id="L293">		assertTrue((CalendarCalc.previousDate(date)).equals(datef));</span>
+<span class="fc" id="L294">	}</span>
+	
+	@Test
+	public void previousDate_12() {
+<span class="fc" id="L298">		String date = &quot;01/10/2020&quot;;</span>
+<span class="fc" id="L299">		String datef = &quot;Wednesday September 30th, 2020&quot;;</span>
+<span class="fc" id="L300">		assertTrue((CalendarCalc.previousDate(date)).equals(datef));</span>
+<span class="fc" id="L301">	}</span>
+	
+	@Test
+	public void previousDate_13() {
+<span class="fc" id="L305">		String date = &quot;01/11/2020&quot;;</span>
+<span class="fc" id="L306">		String datef = &quot;Saturday October 31st, 2020&quot;;</span>
+<span class="fc" id="L307">		assertTrue((CalendarCalc.previousDate(date)).equals(datef));</span>
+<span class="fc" id="L308">	}</span>
+	
+	@Test
+	public void previousDate_14() {
+<span class="fc" id="L312">		String date = &quot;01/12/2020&quot;;</span>
+<span class="fc" id="L313">		String datef = &quot;Monday November 30th, 2020&quot;;</span>
+<span class="fc" id="L314">		assertTrue((CalendarCalc.previousDate(date)).equals(datef));</span>
+<span class="fc" id="L315">	}</span>
+	
+	@Test
+	public void previousDate_15() {
+<span class="fc" id="L319">		String date = &quot;09/12/2020&quot;;</span>
+<span class="fc" id="L320">		String datef = &quot;Tuesday December 8th, 2020&quot;;</span>
+<span class="fc" id="L321">		assertTrue((CalendarCalc.previousDate(date)).equals(datef));</span>
+<span class="fc" id="L322">	}</span>
+	
+	@Test
+	public void nextDate_1() {
+<span class="fc" id="L326">		String date = &quot;31/12/2020&quot;;</span>
+<span class="fc" id="L327">		String datef  = &quot;Friday January 1st, 2021&quot;;</span>
+<span class="fc" id="L328">		assertTrue((CalendarCalc.nextDate(date)).equals(datef));</span>
+<span class="fc" id="L329">	}</span>
+	
+	@Test
+	public void nextDate_2() {
+<span class="fc" id="L333">		String date = &quot;01/01/2020&quot;;</span>
+<span class="fc" id="L334">		String datef = &quot;Thursday January 2nd, 2020&quot;;</span>
+<span class="fc" id="L335">		assertTrue((CalendarCalc.nextDate(date)).equals(datef));</span>
+<span class="fc" id="L336">	}</span>
+	
+	@Test
+	public void nextDate_3() {
+<span class="fc" id="L340">		String date = &quot;31/01/2020&quot;;</span>
+<span class="fc" id="L341">		String datef = &quot;Saturday February 1st, 2020&quot;;</span>
+<span class="fc" id="L342">		assertTrue((CalendarCalc.nextDate(date)).equals(datef));</span>
+<span class="fc" id="L343">	}</span>
+	
+	@Test
+	public void nextDate_4() {
+<span class="fc" id="L347">		String date = &quot;29/02/2020&quot;;</span>
+<span class="fc" id="L348">		String datef = &quot;Sunday March 1st, 2020&quot;;</span>
+<span class="fc" id="L349">		assertTrue((CalendarCalc.nextDate(date)).equals(datef));</span>
+<span class="fc" id="L350">	}</span>
+	
+	@Test
+	public void nextDate_5() {
+<span class="fc" id="L354">		String date = &quot;28/02/2021&quot;;</span>
+<span class="fc" id="L355">		String datef = &quot;Monday March 1st, 2021&quot;;</span>
+<span class="fc" id="L356">		assertTrue((CalendarCalc.nextDate(date)).equals(datef));</span>
+<span class="fc" id="L357">	}</span>
+	
+	@Test
+	public void nextDate_6() {
+<span class="fc" id="L361">		String date = &quot;31/03/2020&quot;;</span>
+<span class="fc" id="L362">		String datef = &quot;Wednesday April 1st, 2020&quot;;</span>
+<span class="fc" id="L363">		assertTrue((CalendarCalc.nextDate(date)).equals(datef));</span>
+<span class="fc" id="L364">	}</span>
+	
+	@Test
+	public void nextDate_7() {
+<span class="fc" id="L368">		String date = &quot;30/04/2020&quot;;</span>
+<span class="fc" id="L369">		String datef = &quot;Friday May 1st, 2020&quot;;</span>
+<span class="fc" id="L370">		assertTrue((CalendarCalc.nextDate(date)).equals(datef));</span>
+<span class="fc" id="L371">	}</span>
+	
+	@Test
+	public void nextDate_8() {
+<span class="fc" id="L375">		String date = &quot;31/05/2020&quot;;</span>
+<span class="fc" id="L376">		String datef = &quot;Monday June 1st, 2020&quot;;</span>
+<span class="fc" id="L377">		assertTrue((CalendarCalc.nextDate(date)).equals(datef));</span>
+<span class="fc" id="L378">	}</span>
+	
+	@Test
+	public void nextDate_9() {
+<span class="fc" id="L382">		String date = &quot;30/06/2020&quot;;</span>
+<span class="fc" id="L383">		String datef = &quot;Wednesday July 1st, 2020&quot;;</span>
+<span class="fc" id="L384">		assertTrue((CalendarCalc.nextDate(date)).equals(datef));</span>
+<span class="fc" id="L385">	}</span>
+	
+	@Test
+	public void nextDate_10() {
+<span class="fc" id="L389">		String date = &quot;31/07/2020&quot;;</span>
+<span class="fc" id="L390">		String datef = &quot;Saturday August 1st, 2020&quot;;</span>
+<span class="fc" id="L391">		assertTrue((CalendarCalc.nextDate(date)).equals(datef));</span>
+<span class="fc" id="L392">	}</span>
+	
+	@Test
+	public void nextDate_11() {
+<span class="fc" id="L396">		String date = &quot;31/08/2020&quot;;</span>
+<span class="fc" id="L397">		String datef = &quot;Tuesday September 1st, 2020&quot;;</span>
+<span class="fc" id="L398">		assertTrue((CalendarCalc.nextDate(date)).equals(datef));</span>
+<span class="fc" id="L399">	}</span>
+	
+	@Test
+	public void nextDate_12() {
+<span class="fc" id="L403">		String date = &quot;30/09/2020&quot;;</span>
+<span class="fc" id="L404">		String datef = &quot;Thursday October 1st, 2020&quot;;</span>
+<span class="fc" id="L405">		assertTrue((CalendarCalc.nextDate(date)).equals(datef));</span>
+<span class="fc" id="L406">	}</span>
+	
+	@Test
+	public void nextDate_13() {
+<span class="fc" id="L410">		String date = &quot;31/10/2020&quot;;</span>
+<span class="fc" id="L411">		String datef = &quot;Sunday November 1st, 2020&quot;;</span>
+<span class="fc" id="L412">		assertTrue((CalendarCalc.nextDate(date)).equals(datef));</span>
+<span class="fc" id="L413">	}</span>
+	
+	@Test
+	public void nextDate_14() {
+<span class="fc" id="L417">		String date = &quot;30/11/2020&quot;;</span>
+<span class="fc" id="L418">		String datef = &quot;Tuesday December 1st, 2020&quot;;</span>
+<span class="fc" id="L419">		assertTrue((CalendarCalc.nextDate(date)).equals(datef));</span>
+<span class="fc" id="L420">	}</span>
+	
+	@Test
+	public void nextDate_15() {
+<span class="fc" id="L424">		String date = &quot;15/12/2020&quot;;</span>
+<span class="fc" id="L425">		String datef = &quot;Wednesday December 16th, 2020&quot;;</span>
+<span class="fc" id="L426">		assertTrue((CalendarCalc.nextDate(date)).equals(datef));</span>
+<span class="fc" id="L427">	}</span>
+	
+	@Test
+	public void getSunday_1() {
+<span class="fc" id="L431">		String date = &quot;12/12/2020:=&quot;;</span>
+<span class="pc bpc" id="L432" title="1 of 2 branches missed.">		assertTrue(CalendarCalc.getSunday(date) == 2);</span>
+<span class="fc" id="L433">	}</span>
+	
+	@Test
+	public void getSunday_2() {
+<span class="fc" id="L437">		String date = &quot;26/12/2019&quot;;</span>
+<span class="pc bpc" id="L438" title="1 of 2 branches missed.">		assertTrue(CalendarCalc.getSunday(date) == 52);</span>
+<span class="fc" id="L439">	}</span>
+	
+	@Test
+	public void getSunday_3() {
+<span class="fc" id="L443">		String date = &quot;31/12/2019&quot;;</span>
+<span class="pc bpc" id="L444" title="1 of 2 branches missed.">		assertTrue(CalendarCalc.getSunday(date) == 51);</span>
+<span class="fc" id="L445">	}</span>
+	
+	@Test
+	public void getSunday_4() {
+<span class="fc" id="L449">		String date = &quot;31/12/2019&quot;;</span>
+<span class="pc bpc" id="L450" title="1 of 2 branches missed.">		assertTrue(CalendarCalc.getSunday(date) == 51);</span>
+<span class="fc" id="L451">	}</span>
+	
+	@Test
+	public void getSunday_5() {
+<span class="fc" id="L455">		String date = &quot;26/12/2020&quot;;</span>
+<span class="pc bpc" id="L456" title="1 of 2 branches missed.">		assertTrue(CalendarCalc.getSunday(date) == 52);</span>
+<span class="fc" id="L457">	}</span>
+	
+	@Test
+	public void getThanks_1() {
+<span class="fc" id="L461">		String date = &quot;01/01/2020&quot;;</span>
+<span class="pc bpc" id="L462" title="1 of 2 branches missed.">		assertTrue(CalendarCalc.getThanks(date) == 331);</span>
+<span class="fc" id="L463">	}</span>
+	
+	@Test
+	public void reverseDayNumber_1() {
+<span class="fc" id="L467">		String date = &quot;01/01/2020&quot;;</span>
+<span class="fc" id="L468">		int otherDate = 331;</span>
+<span class="fc" id="L469">		String check = &quot;26/11/2020&quot;;</span>
+<span class="fc" id="L470">		assertTrue((CalendarCalc.reverseDayNumber(otherDate, date)).contentEquals(check));</span>
+<span class="fc" id="L471">	}</span>
+	
+	@Test
+	public void getXmas_1() {
+<span class="fc" id="L475">		String date = &quot;01/01/2020&quot;;</span>
+<span class="pc bpc" id="L476" title="1 of 2 branches missed.">		assertTrue((CalendarCalc.getXmas(date)) == 360);</span>
+<span class="fc" id="L477">	}</span>
+	
+	@Test
+	public void getXmas_2() {
+<span class="fc" id="L481">		String date = &quot;01/01/2019&quot;;</span>
+<span class="pc bpc" id="L482" title="1 of 2 branches missed.">		assertTrue((CalendarCalc.getXmas(date)) == 359);</span>
+<span class="fc" id="L483">	}</span>
+	
+	@Test
+	public void getNumShopping_1() {
+<span class="fc" id="L487">		String date = &quot;25/11/2020&quot;;</span>
+<span class="pc bpc" id="L488" title="1 of 2 branches missed.">		assertTrue(CalendarCalc.getNumShopping(date) == 25);</span>
+<span class="fc" id="L489">	}</span>
+	
+	@Test
+	public void getNumShopping_2() {
+<span class="fc" id="L493">		String date = &quot;01/12/2020&quot;;</span>
+<span class="pc bpc" id="L494" title="1 of 2 branches missed.">		assertTrue(CalendarCalc.getNumShopping(date) == 21);</span>
+
+<span class="fc" id="L496">	}</span>
+	
+	@Test
+	public void getNumShopping_3() {
+<span class="fc" id="L500">		String date = &quot;31/12/2019&quot;;</span>
+<span class="pc bpc" id="L501" title="1 of 2 branches missed.">		assertTrue(CalendarCalc.getNumShopping(date) == 308);</span>
+<span class="fc" id="L502">	}</span>
+	
+	@Test
+	public void getNumShopping_4() {
+<span class="fc" id="L506">		String date = &quot;31/12/2020&quot;;</span>
+<span class="pc bpc" id="L507" title="1 of 2 branches missed.">		assertTrue(CalendarCalc.getNumShopping(date) == 307);</span>
+
+<span class="fc" id="L509">	}</span>
+	
+	@Test
+	public void getNumShopping_5() {
+<span class="fc" id="L513">		String date = &quot;01/12/2019&quot;;</span>
+<span class="pc bpc" id="L514" title="1 of 2 branches missed.">		assertTrue(CalendarCalc.getNumShopping(date) == 21);</span>
+
+<span class="fc" id="L516">	}</span>
+	
+	@Test
+	public void getNumShopping_6() {
+<span class="fc" id="L520">		String date = &quot;27/11/2019&quot;;</span>
+<span class="pc bpc" id="L521" title="1 of 2 branches missed.">		assertTrue(CalendarCalc.getNumShopping(date) == 23);</span>
+
+<span class="fc" id="L523">	}</span>
+	
+	@Test
+	public void getNumShopping_7() {
+<span class="fc" id="L527">		String date = &quot;31/12/2021&quot;;</span>
+<span class="pc bpc" id="L528" title="1 of 2 branches missed.">		assertTrue(CalendarCalc.getNumShopping(date) == 307);</span>
+<span class="fc" id="L529">	}</span>
+	
+	@Test
+	public void getNumShopping_8() {
+<span class="fc" id="L533">		String date = &quot;25/12/2020&quot;;</span>
+<span class="pc bpc" id="L534" title="1 of 2 branches missed.">		assertTrue(CalendarCalc.getNumShopping(date) == 0);</span>
+<span class="fc" id="L535">	}</span>
+	
+	@Test
+	public void getZodiac_1() {
+<span class="fc" id="L539">		String date = &quot;22/03/2020&quot;;</span>
+<span class="pc bpc" id="L540" title="1 of 2 branches missed.">		assertTrue(CalendarCalc.getZodiac(date) == &quot;Aries&quot;);</span>
+<span class="fc" id="L541">	}</span>
+	
+	@Test
+	public void getZodiac_2() {
+<span class="fc" id="L545">		String date = &quot;22/04/2020&quot;;</span>
+<span class="pc bpc" id="L546" title="1 of 2 branches missed.">		assertTrue(CalendarCalc.getZodiac(date) == &quot;Taurus&quot;);</span>
+<span class="fc" id="L547">	}</span>
+	
+	@Test
+	public void getZodiac_3() {
+<span class="fc" id="L551">		String date = &quot;22/05/2020&quot;;</span>
+<span class="pc bpc" id="L552" title="1 of 2 branches missed.">		assertTrue(CalendarCalc.getZodiac(date) == &quot;Gemini&quot;);</span>
+<span class="fc" id="L553">	}</span>
+	
+	@Test
+	public void getZodiac_4() {
+<span class="fc" id="L557">		String date = &quot;22/06/2020&quot;;</span>
+<span class="pc bpc" id="L558" title="1 of 2 branches missed.">		assertTrue(CalendarCalc.getZodiac(date) == &quot;Cancer&quot;);</span>
+<span class="fc" id="L559">	}</span>
+	
+	@Test
+	public void getZodiac_5() {
+<span class="fc" id="L563">		String date = &quot;24/07/2020&quot;;</span>
+<span class="pc bpc" id="L564" title="1 of 2 branches missed.">		assertTrue(CalendarCalc.getZodiac(date) == &quot;Leo&quot;);</span>
+<span class="fc" id="L565">	}</span>
+	
+	@Test
+	public void getZodiac_6() {
+<span class="fc" id="L569">		String date = &quot;24/08/2020&quot;;</span>
+<span class="pc bpc" id="L570" title="1 of 2 branches missed.">		assertTrue(CalendarCalc.getZodiac(date) == &quot;Virgo&quot;);</span>
+<span class="fc" id="L571">	}</span>
+	
+	@Test
+	public void getZodiac_7() {
+<span class="fc" id="L575">		String date = &quot;24/09/2020&quot;;</span>
+<span class="pc bpc" id="L576" title="1 of 2 branches missed.">		assertTrue(CalendarCalc.getZodiac(date) == &quot;Libra&quot;);</span>
+<span class="fc" id="L577">	}</span>
+	
+	@Test
+	public void getZodiac_8() {
+<span class="fc" id="L581">		String date = &quot;25/10/2020&quot;;</span>
+<span class="pc bpc" id="L582" title="1 of 2 branches missed.">		assertTrue(CalendarCalc.getZodiac(date) == &quot;Scorpio&quot;);</span>
+<span class="fc" id="L583">	}</span>
+	
+	@Test
+	public void getZodiac_9() {
+<span class="fc" id="L587">		String date = &quot;24/11/2020&quot;;</span>
+<span class="pc bpc" id="L588" title="1 of 2 branches missed.">		assertTrue(CalendarCalc.getZodiac(date) == &quot;Sagittarius&quot;);</span>
+<span class="fc" id="L589">	}</span>
+	
+	@Test
+	public void getZodiac_10() {
+<span class="fc" id="L593">		String date = &quot;23/12/2020&quot;;</span>
+<span class="pc bpc" id="L594" title="1 of 2 branches missed.">		assertTrue(CalendarCalc.getZodiac(date) == &quot;Capricorn&quot;);</span>
+<span class="fc" id="L595">	}</span>
+	
+	@Test
+	public void getZodiac_11() {
+<span class="fc" id="L599">		String date = &quot;22/01/2020&quot;;</span>
+<span class="pc bpc" id="L600" title="1 of 2 branches missed.">		assertTrue(CalendarCalc.getZodiac(date) == &quot;Aquarius&quot;);</span>
+<span class="fc" id="L601">	}</span>
+	
+	@Test
+	public void getZodiac_12() {
+<span class="fc" id="L605">		String date = &quot;22/02/2020&quot;;</span>
+<span class="pc bpc" id="L606" title="1 of 2 branches missed.">		assertTrue(CalendarCalc.getZodiac(date) == &quot;Pisces&quot;);</span>
+<span class="fc" id="L607">	}</span>
+	@Test
+	public void getZodiac_13() {
+<span class="fc" id="L610">		String date = &quot;22/03/2021&quot;;</span>
+<span class="pc bpc" id="L611" title="1 of 2 branches missed.">		assertTrue(CalendarCalc.getZodiac(date) == &quot;Aries&quot;);</span>
+<span class="fc" id="L612">	}</span>
+	
+	@Test
+	public void getZodiac_14() {
+<span class="fc" id="L616">		String date = &quot;22/04/2021&quot;;</span>
+<span class="pc bpc" id="L617" title="1 of 2 branches missed.">		assertTrue(CalendarCalc.getZodiac(date) == &quot;Taurus&quot;);</span>
+<span class="fc" id="L618">	}</span>
+	
+	@Test
+	public void getZodiac_15() {
+<span class="fc" id="L622">		String date = &quot;22/05/2021&quot;;</span>
+<span class="pc bpc" id="L623" title="1 of 2 branches missed.">		assertTrue(CalendarCalc.getZodiac(date) == &quot;Gemini&quot;);</span>
+<span class="fc" id="L624">	}</span>
+	
+	@Test
+	public void getZodiac_16() {
+<span class="fc" id="L628">		String date = &quot;22/06/2021&quot;;</span>
+<span class="pc bpc" id="L629" title="1 of 2 branches missed.">		assertTrue(CalendarCalc.getZodiac(date) == &quot;Cancer&quot;);</span>
+<span class="fc" id="L630">	}</span>
+	
+	@Test
+	public void getZodiac_17() {
+<span class="fc" id="L634">		String date = &quot;24/07/2021&quot;;</span>
+<span class="pc bpc" id="L635" title="1 of 2 branches missed.">		assertTrue(CalendarCalc.getZodiac(date) == &quot;Leo&quot;);</span>
+<span class="fc" id="L636">	}</span>
+	
+	@Test
+	public void getZodiac_18() {
+<span class="fc" id="L640">		String date = &quot;24/08/2021&quot;;</span>
+<span class="pc bpc" id="L641" title="1 of 2 branches missed.">		assertTrue(CalendarCalc.getZodiac(date) == &quot;Virgo&quot;);</span>
+<span class="fc" id="L642">	}</span>
+	
+	@Test
+	public void getZodiac_19() {
+<span class="fc" id="L646">		String date = &quot;24/09/2021&quot;;</span>
+<span class="pc bpc" id="L647" title="1 of 2 branches missed.">		assertTrue(CalendarCalc.getZodiac(date) == &quot;Libra&quot;);</span>
+<span class="fc" id="L648">	}</span>
+	
+	@Test
+	public void getZodiac_20() {
+<span class="fc" id="L652">		String date = &quot;25/10/2021&quot;;</span>
+<span class="pc bpc" id="L653" title="1 of 2 branches missed.">		assertTrue(CalendarCalc.getZodiac(date) == &quot;Scorpio&quot;);</span>
+<span class="fc" id="L654">	}</span>
+	
+	@Test
+	public void getZodiac_21() {
+<span class="fc" id="L658">		String date = &quot;24/11/2021&quot;;</span>
+<span class="pc bpc" id="L659" title="1 of 2 branches missed.">		assertTrue(CalendarCalc.getZodiac(date) == &quot;Sagittarius&quot;);</span>
+<span class="fc" id="L660">	}</span>
+	
+	@Test
+	public void getZodiac_22() {
+<span class="fc" id="L664">		String date = &quot;23/12/2021&quot;;</span>
+<span class="pc bpc" id="L665" title="1 of 2 branches missed.">		assertTrue(CalendarCalc.getZodiac(date) == &quot;Capricorn&quot;);</span>
+<span class="fc" id="L666">	}</span>
+	
+	@Test
+	public void getZodiac_23() {
+<span class="fc" id="L670">		String date = &quot;22/01/2021&quot;;</span>
+<span class="pc bpc" id="L671" title="1 of 2 branches missed.">		assertTrue(CalendarCalc.getZodiac(date) == &quot;Aquarius&quot;);</span>
+<span class="fc" id="L672">	}</span>
+	
+	@Test
+	public void getZodiac_24() {
+<span class="fc" id="L676">		String date = &quot;22/02/2021&quot;;</span>
+<span class="pc bpc" id="L677" title="1 of 2 branches missed.">		assertTrue(CalendarCalc.getZodiac(date) == &quot;Pisces&quot;);</span>
+<span class="fc" id="L678">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span>calendarTest (Dec 12, 2020 6:30:34 PM)</div></body></html>

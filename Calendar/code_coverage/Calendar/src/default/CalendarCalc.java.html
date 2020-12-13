@@ -1,0 +1,858 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>CalendarCalc.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">calendarTest (Dec 12, 2020 6:30:34 PM)</a> &gt; <a href="../../index.html" class="el_group">Calendar</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">default</a> &gt; <span class="el_source">CalendarCalc.java</span></div><h1>CalendarCalc.java</h1><pre class="source lang-java linenums">
+<span class="nc" id="L2">public class CalendarCalc {</span>
+	String date;
+	//determine whether or not the year given is a leap year
+	public static boolean leapYear(String date) {
+        
+<span class="fc" id="L7">		int iYear = getYear(date);</span>
+<span class="fc" id="L8">        boolean leap = false;</span>
+
+<span class="fc bfc" id="L10" title="All 2 branches covered.">        if((iYear % 4) == 0){</span>
+<span class="fc" id="L11">            leap = true;</span>
+        }
+
+<span class="fc bfc" id="L14" title="All 2 branches covered.">        if((iYear % 100) == 0){</span>
+            
+<span class="fc bfc" id="L16" title="All 2 branches covered.">            if((iYear % 400) == 0){</span>
+<span class="fc" id="L17">                leap = true;</span>
+<span class="fc" id="L18">            } else {</span>
+<span class="fc" id="L19">            	leap =  false;</span>
+            }
+        } 
+        
+<span class="fc" id="L23">        return leap;</span>
+	}
+
+    //returns the day of the week of a given date
+	static String getDayofWeek(String date) {
+<span class="fc" id="L28">		String[] dWeek = {&quot;Sunday&quot;, &quot;Monday&quot;, &quot;Tuesday&quot;, &quot;Wednesday&quot;, &quot;Thursday&quot;, &quot;Friday&quot;, &quot;Saturday&quot;};</span>
+<span class="fc" id="L29">		int m = 0;</span>
+		int d;
+		int doW;
+		int k;
+		int f;
+		int c;
+		
+<span class="pc bpc" id="L36" title="1 of 13 branches missed.">        switch(getMonth(date)){</span>
+            case 1:
+<span class="fc" id="L38">                m = 11;</span>
+<span class="fc" id="L39">                break;</span>
+            case 2:
+<span class="fc" id="L41">                m = 12;</span>
+<span class="fc" id="L42">                break;</span>
+            case 3:
+<span class="fc" id="L44">                m = 1;</span>
+<span class="fc" id="L45">                break;</span>
+            case 4:
+<span class="fc" id="L47">                m = 2;</span>
+<span class="fc" id="L48">                break;</span>
+            case 5:
+<span class="fc" id="L50">                m = 3;</span>
+<span class="fc" id="L51">                break;</span>
+            case 6:
+<span class="fc" id="L53">                m = 4;</span>
+<span class="fc" id="L54">                break;</span>
+            case 7:
+<span class="fc" id="L56">                m = 5;</span>
+<span class="fc" id="L57">                break;</span>
+            case 8:
+<span class="fc" id="L59">                m = 6;</span>
+<span class="fc" id="L60">                break;</span>
+            case 9:
+<span class="fc" id="L62">                m = 7;</span>
+<span class="fc" id="L63">                break;</span>
+            case 10:
+<span class="fc" id="L65">                m = 8;</span>
+<span class="fc" id="L66">                break;</span>
+            case 11:
+<span class="fc" id="L68">                m = 9;</span>
+<span class="fc" id="L69">                break;</span>
+            case 12:
+<span class="fc" id="L71">                m = 10;</span>
+                break;
+        }
+
+<span class="fc bfc" id="L75" title="All 4 branches covered.">        if((m == 11) || (m == 12)){</span>
+<span class="fc" id="L76">            d = Integer.parseInt(date.substring(8, 10)) - 1;</span>
+<span class="fc" id="L77">        } else{</span>
+<span class="fc" id="L78">            d = Integer.parseInt(date.substring(8, 10));</span>
+        }
+
+<span class="fc" id="L81">        k = getDay(date);</span>
+
+<span class="fc" id="L83">        c = Integer.parseInt(date.substring(6, 8));</span>
+
+<span class="fc" id="L85">        f = k +((13 * m - 1) / 5) + d + (d / 4) + (c / 4) - 2 * c;</span>
+
+<span class="fc" id="L87">        doW = f % 7;</span>
+<span class="fc bfc" id="L88" title="All 2 branches covered.">        if(doW &lt; 0) {</span>
+<span class="fc" id="L89">        	doW = doW + 7;</span>
+        }
+
+<span class="fc" id="L92">        return dWeek[doW];</span>
+	}
+	
+	//returns day in date as an integer
+	public static int getDay(String date) {
+<span class="fc" id="L97">		int sDate = Integer.parseInt(date.substring(0, 2));</span>
+		
+<span class="fc" id="L99">		return sDate;</span>
+	}
+	
+	//returns day in date as a string with st, nd, rd, or th
+	public static String getDayS(String date) {
+<span class="fc" id="L104">		int n = getDay(date);</span>
+<span class="fc" id="L105">		String s = &quot;&quot;;</span>
+		
+<span class="fc bfc" id="L107" title="All 2 branches covered.">		if(n == 1) {</span>
+<span class="fc" id="L108">			s = &quot;1st&quot;;</span>
+<span class="fc bfc" id="L109" title="All 2 branches covered.">		} else if(n == 2) {</span>
+<span class="fc" id="L110">			s = &quot;2nd&quot;;</span>
+<span class="fc bfc" id="L111" title="All 2 branches covered.">		} else if(n == 3) {</span>
+<span class="fc" id="L112">			s = &quot;3rd&quot;;</span>
+<span class="fc bfc" id="L113" title="All 2 branches covered.">		} else if(n == 21) {</span>
+<span class="fc" id="L114">			s = &quot;21st&quot;;</span>
+<span class="fc bfc" id="L115" title="All 2 branches covered.">		} else if(n == 22) {</span>
+<span class="fc" id="L116">			s = &quot;22nd&quot;;</span>
+<span class="fc bfc" id="L117" title="All 2 branches covered.">		} else if(n == 23) {</span>
+<span class="fc" id="L118">			s = &quot;23rd&quot;;</span>
+<span class="fc bfc" id="L119" title="All 2 branches covered.">		} else if(n == 31) {</span>
+<span class="fc" id="L120">			s = &quot;31st&quot;;</span>
+<span class="fc" id="L121">		} else {</span>
+<span class="fc" id="L122">			s = n + &quot;th&quot;;</span>
+		}
+		
+<span class="fc" id="L125">		return s;</span>
+     
+	}
+
+	//returns month in date as an integer
+	public static int getMonth(String date) {
+		
+<span class="fc" id="L132">		int sDate = Integer.parseInt(date.substring(3, 5));</span>
+<span class="fc" id="L133">		return sDate;</span>
+	}
+	
+	//returns month in date as month name
+	public static String getMonthS(String date) {
+		
+<span class="fc" id="L139">		String month = &quot;&quot;;</span>
+<span class="pc bpc" id="L140" title="1 of 13 branches missed.">		switch(getMonth(date)){</span>
+        case 1:
+<span class="fc" id="L142">            month = &quot;January&quot;;</span>
+<span class="fc" id="L143">            break;</span>
+        case 2:
+<span class="fc" id="L145">        	month = &quot;February&quot;;</span>
+<span class="fc" id="L146">        	break;</span>
+        case 3:
+<span class="fc" id="L148">        	month = &quot;March&quot;;</span>
+<span class="fc" id="L149">        	break;</span>
+        case 4:
+<span class="fc" id="L151">        	month = &quot;April&quot;;</span>
+<span class="fc" id="L152">        	break;</span>
+        case 5:
+<span class="fc" id="L154">        	month = &quot;May&quot;;</span>
+<span class="fc" id="L155">        	break;</span>
+        case 6:
+<span class="fc" id="L157">        	month = &quot;June&quot;;</span>
+<span class="fc" id="L158">        	break;</span>
+        case 7:
+<span class="fc" id="L160">        	month = &quot;July&quot;;</span>
+<span class="fc" id="L161">        	break;</span>
+        case 8:
+<span class="fc" id="L163">        	month = &quot;August&quot;;</span>
+<span class="fc" id="L164">        	break;</span>
+        case 9:
+<span class="fc" id="L166">        	month = &quot;September&quot;;</span>
+<span class="fc" id="L167">        	break;</span>
+        case 10:
+<span class="fc" id="L169">        	month = &quot;October&quot;;</span>
+<span class="fc" id="L170">        	break;</span>
+        case 11:
+<span class="fc" id="L172">        	month = &quot;November&quot;;</span>
+<span class="fc" id="L173">        	break;</span>
+        case 12:
+<span class="fc" id="L175">        	month = &quot;December&quot;;</span>
+        	break;
+		}
+		
+<span class="fc" id="L179">		return month;</span>
+		
+	}
+	
+	//returns year in date as int
+	public static int getYear(String date) {
+<span class="fc" id="L185">		String sDate = date.substring(6,10);</span>
+<span class="fc" id="L186">		int iDate = Integer.parseInt(sDate);</span>
+
+<span class="fc" id="L188">		return iDate;</span>
+		
+	}
+	
+	//returns previous date of given date
+	public static String previousDate(String date) {
+        
+<span class="fc" id="L195">        int nd = getDay(date);</span>
+<span class="fc" id="L196">        int ny = getYear(date);</span>
+<span class="fc" id="L197">        int nm = getMonth(date);</span>
+<span class="fc" id="L198">        String sm = &quot;&quot;;</span>
+<span class="fc" id="L199">        String sd = &quot;&quot;;</span>
+<span class="fc" id="L200">        String sy = &quot;&quot;;</span>
+
+<span class="fc bfc" id="L202" title="All 4 branches covered.">        if(nd == 1 &amp;&amp; nm == 1){</span>
+<span class="fc" id="L203">            ny = ny - 1;</span>
+<span class="fc" id="L204">            sd = &quot;31&quot;;</span>
+<span class="fc" id="L205">            sm = &quot;12&quot;;</span>
+<span class="pc bpc" id="L206" title="1 of 4 branches missed.">        } else if(nd == 1 &amp;&amp; nm &gt;= 2) {</span>
+<span class="fc bfc" id="L207" title="All 2 branches covered.">    		if(nm == 2) {</span>
+<span class="fc" id="L208">    			sd = &quot;31&quot;;</span>
+<span class="fc" id="L209">    			sm = &quot;01&quot;;</span>
+<span class="fc bfc" id="L210" title="All 2 branches covered.">    		}else if(nm == 3) {</span>
+<span class="fc" id="L211">    			sm = &quot;02&quot;;</span>
+<span class="fc bfc" id="L212" title="All 2 branches covered.">	        	if(leapYear(date) == true) {</span>
+<span class="fc" id="L213">	    			sd = &quot;29&quot;;</span>
+<span class="fc" id="L214">	    		} else {</span>
+<span class="fc" id="L215">	    			sd = &quot;28&quot;;</span>
+	    		}
+<span class="fc bfc" id="L217" title="All 2 branches covered.">    		} else if(nm == 4) {</span>
+<span class="fc" id="L218">    			sd = &quot;31&quot;;</span>
+<span class="fc" id="L219">    			sm = &quot;03&quot;;</span>
+<span class="fc bfc" id="L220" title="All 2 branches covered.">    		} else if(nm == 5) {</span>
+<span class="fc" id="L221">    			sd = &quot;30&quot;;</span>
+<span class="fc" id="L222">    			sm = &quot;04&quot;;</span>
+<span class="fc bfc" id="L223" title="All 2 branches covered.">    		} else if(nm == 6) {</span>
+<span class="fc" id="L224">    			sd = &quot;31&quot;;</span>
+<span class="fc" id="L225">    			sm = &quot;05&quot;;</span>
+<span class="fc bfc" id="L226" title="All 2 branches covered.">    		} else if (nm == 7) {</span>
+<span class="fc" id="L227">    			sd = &quot;30&quot;;</span>
+<span class="fc" id="L228">    			sm = &quot;06&quot;;</span>
+<span class="fc bfc" id="L229" title="All 2 branches covered.">    		} else if (nm == 8) {</span>
+<span class="fc" id="L230">    			sd = &quot;31&quot;;</span>
+<span class="fc" id="L231">    			sm = &quot;07&quot;;</span>
+<span class="fc bfc" id="L232" title="All 2 branches covered.">    		} else if(nm == 9) {</span>
+<span class="fc" id="L233">    			sd = &quot;31&quot;;</span>
+<span class="fc" id="L234">    			sm = &quot;08&quot;;</span>
+<span class="fc bfc" id="L235" title="All 2 branches covered.">    		}else if(nm == 10) {</span>
+<span class="fc" id="L236">        		sd = &quot;30&quot;;</span>
+<span class="fc" id="L237">        		sm = &quot;09&quot;;</span>
+<span class="fc bfc" id="L238" title="All 2 branches covered.">    		}else if(nm == 11) {</span>
+<span class="fc" id="L239">        		sd = &quot;31&quot;;</span>
+<span class="fc" id="L240">        		sm = &quot;10&quot;;</span>
+<span class="pc bpc" id="L241" title="1 of 2 branches missed.">    		} else if(nm ==12) {</span>
+<span class="fc" id="L242">        		sd = &quot;30&quot;;</span>
+<span class="fc" id="L243">        		sm = &quot;11&quot;;</span>
+        	} 
+    		
+<span class="fc" id="L246">        } else {</span>
+        	
+<span class="fc" id="L248">        	nd = nd - 1;</span>
+        	
+<span class="fc bfc" id="L250" title="All 2 branches covered.">        	if(nm &lt; 10) {</span>
+<span class="fc" id="L251">        		sm = &quot;0&quot; + Integer.toString(nm);</span>
+<span class="fc" id="L252">        	} else {</span>
+<span class="fc" id="L253">        		sm = Integer.toString(nm);</span>
+        	}
+        	
+        	
+<span class="fc bfc" id="L257" title="All 2 branches covered.">        	if(nd &lt; 10) {</span>
+<span class="fc" id="L258">        		sd = &quot;0&quot; + nd;</span>
+<span class="fc" id="L259">        	} else {</span>
+<span class="fc" id="L260">        		sd = Integer.toString(nd);</span>
+        	}
+        }
+                
+<span class="fc" id="L264">        sy = Integer.toString(ny);</span>
+<span class="fc" id="L265">        String prevS = sd + &quot;/&quot; + sm + &quot;/&quot; + sy;</span>
+<span class="fc" id="L266">        String finDate = finalDate(prevS);</span>
+<span class="fc" id="L267">		return finDate;</span>
+	}
+	
+	//returns next date of given date
+	public static String nextDate(String date) {
+       
+<span class="fc" id="L273">		int nd = getDay(date);</span>
+<span class="fc" id="L274">        int nm = getMonth(date);</span>
+<span class="fc" id="L275">        int ny = getYear(date);</span>
+
+<span class="fc" id="L277">        String sm = &quot;&quot;;</span>
+<span class="fc" id="L278">        String sd = &quot;&quot;;</span>
+<span class="fc" id="L279">        String sy = &quot;&quot;;</span>
+        
+<span class="fc bfc" id="L281" title="All 4 branches covered.">        if(nd == 31 &amp;&amp; nm == 12){</span>
+            
+<span class="fc" id="L283">        	ny = ny + 1;</span>
+<span class="fc" id="L284">            sm = &quot;01&quot;;</span>
+<span class="fc" id="L285">        	sd = &quot;01&quot;;</span>
+
+        	
+<span class="fc bfc" id="L288" title="All 4 branches covered.">        } else if(nd == 31 &amp;&amp; nm == 1){</span>
+
+<span class="fc" id="L290">        	sm = &quot;02&quot;;</span>
+<span class="fc" id="L291">        	sd = &quot;01&quot;;</span>
+        	
+<span class="pc bpc" id="L293" title="1 of 6 branches missed.">        } else if(nm == 2 &amp;&amp; nd == 29 &amp;&amp; leapYear(date) == true){</span>
+        	
+<span class="fc" id="L295">        	sm = &quot;03&quot;;</span>
+<span class="fc" id="L296">        	sd = &quot;01&quot;;</span>
+        	
+<span class="pc bpc" id="L298" title="2 of 6 branches missed.">        } else if(nm == 2 &amp;&amp; nd == 28 &amp;&amp; leapYear(date) == false){</span>
+        	
+<span class="fc" id="L300">        	sm = &quot;03&quot;;</span>
+<span class="fc" id="L301">        	sd = &quot;01&quot;;</span>
+        	
+<span class="fc bfc" id="L303" title="All 4 branches covered.">        } else if( nd == 31 &amp;&amp; nm == 3) {</span>
+        	
+<span class="fc" id="L305">        	sm = &quot;04&quot;;</span>
+<span class="fc" id="L306">        	sd = &quot;01&quot;;</span>
+        	
+<span class="fc bfc" id="L308" title="All 4 branches covered.">        } else if(nd == 30 &amp;&amp; nm == 4) {</span>
+        	
+<span class="fc" id="L310">        	sm = &quot;05&quot;;</span>
+<span class="fc" id="L311">        	sd = &quot;01&quot;;</span>
+        	
+<span class="fc bfc" id="L313" title="All 4 branches covered.">        } else if(nd == 31 &amp;&amp; nm == 5){</span>
+        	
+<span class="fc" id="L315">        	sm = &quot;06&quot;;</span>
+<span class="fc" id="L316">        	sd = &quot;01&quot;;</span>
+        	
+<span class="fc bfc" id="L318" title="All 4 branches covered.">        } else if(nd == 30 &amp;&amp; nm == 6){</span>
+        	
+<span class="fc" id="L320">        	sm = &quot;07&quot;;</span>
+<span class="fc" id="L321">        	sd = &quot;01&quot;;</span>
+        	
+<span class="fc bfc" id="L323" title="All 4 branches covered.">        } else if(nd == 31 &amp;&amp; nm == 7){</span>
+        	
+<span class="fc" id="L325">        	sm = &quot;08&quot;;</span>
+<span class="fc" id="L326">        	sd = &quot;01&quot;;  </span>
+        	
+<span class="fc bfc" id="L328" title="All 4 branches covered.">        } else if(nd == 31 &amp;&amp; nm == 8){</span>
+        	
+<span class="fc" id="L330">        	sm = &quot;09&quot;;</span>
+<span class="fc" id="L331">        	sd = &quot;01&quot;;</span>
+        	
+<span class="fc bfc" id="L333" title="All 4 branches covered.">        } else if(nd == 30 &amp;&amp; nm == 9){</span>
+        	
+<span class="fc" id="L335">        	sm = &quot;10&quot;;</span>
+<span class="fc" id="L336">        	sd = &quot;01&quot;;  </span>
+        	
+<span class="pc bpc" id="L338" title="1 of 4 branches missed.">        } else if(nd == 31 &amp;&amp; nm == 10){</span>
+        	
+<span class="fc" id="L340">        	sm = &quot;11&quot;;</span>
+<span class="fc" id="L341">        	sd = &quot;01&quot;;  </span>
+        	
+<span class="pc bpc" id="L343" title="1 of 4 branches missed.">        } else if(nd == 30 &amp;&amp; nm == 11){</span>
+        	
+<span class="fc" id="L345">        	sm = &quot;12&quot;;</span>
+<span class="fc" id="L346">        	sd = &quot;01&quot;;</span>
+        	
+<span class="fc" id="L348">        }else {</span>
+        	
+<span class="fc" id="L350">        	nd = nd + 1;</span>
+        	
+<span class="fc bfc" id="L352" title="All 2 branches covered.">        	if(nm &lt; 10) {</span>
+<span class="fc" id="L353">        		sm = &quot;0&quot; + nm;</span>
+<span class="fc" id="L354">        	} else {</span>
+<span class="fc" id="L355">        		sm = Integer.toString(nm);</span>
+        	}
+        	
+
+        	
+<span class="fc bfc" id="L360" title="All 2 branches covered.">        	if(nd &lt; 10) {</span>
+<span class="fc" id="L361">        		sd = &quot;0&quot; + nd;</span>
+<span class="fc" id="L362">        	} else {</span>
+        		
+<span class="fc" id="L364">        		sd = Integer.toString(nd);</span>
+        	
+        	}
+        }
+         
+<span class="fc" id="L369">        sy = Integer.toString(ny);</span>
+        
+<span class="fc" id="L371">        String nextS = sd + &quot;/&quot; + sm + &quot;/&quot; + sy;</span>
+<span class="fc" id="L372">        String finDate = finalDate(nextS);</span>
+<span class="fc" id="L373">        System.out.println(nextS);</span>
+<span class="fc" id="L374">		return finDate;</span>
+	}
+	
+	//returns how many sundays there are between given date and xmas
+	public static int getSunday(String date) {
+		
+<span class="fc" id="L380">		int sunday = 0;</span>
+<span class="fc" id="L381">		String s = &quot;&quot;;</span>
+<span class="fc" id="L382">		int y = getYear(date) + 1;</span>
+<span class="fc" id="L383">		String nextYear = &quot;01/01/&quot; + Integer.toString(y);</span>
+		
+		//ideal case calculate sundays to xmas
+<span class="fc bfc" id="L386" title="All 2 branches covered.">		if(calculateDayNumber(date) &lt; getXmas(date)) {</span>
+			
+<span class="fc bfc" id="L388" title="All 2 branches covered.">			for(int i = calculateDayNumber(date); i &lt; getXmas(date); i++) {</span>
+<span class="fc" id="L389">				s = getDayofWeek(reverseDayNumber(i, date));</span>
+				
+<span class="fc bfc" id="L391" title="All 2 branches covered.">				if(s == &quot;Sunday&quot;) {</span>
+					
+<span class="fc" id="L393">					sunday++;</span>
+					
+				}
+			}
+			
+		// is if after xmas
+<span class="fc bfc" id="L399" title="All 2 branches covered.">		} if(calculateDayNumber(date) &gt; getXmas(date)) {</span>
+<span class="fc bfc" id="L400" title="All 2 branches covered.">			if(leapYear(date) == true) {</span>
+<span class="fc bfc" id="L401" title="All 2 branches covered.">				for(int i = calculateDayNumber(date); i &lt; 366; i++) {</span>
+<span class="fc" id="L402">					s = getDayofWeek(reverseDayNumber(i, date));</span>
+<span class="fc bfc" id="L403" title="All 2 branches covered.">					if(s == &quot;Sunday&quot;) {</span>
+<span class="fc" id="L404">						sunday++;</span>
+					}
+				}
+<span class="fc" id="L407">			} else {</span>
+<span class="fc bfc" id="L408" title="All 2 branches covered.">				for(int i = calculateDayNumber(date); i &lt; 365; i++) {</span>
+<span class="fc" id="L409">					s = getDayofWeek(reverseDayNumber(i, date));</span>
+<span class="fc bfc" id="L410" title="All 2 branches covered.">					if(s == &quot;Sunday&quot;) {</span>
+<span class="fc" id="L411">						sunday++;</span>
+					}
+				}
+			}
+			
+<span class="fc bfc" id="L416" title="All 2 branches covered.">			if(leapYear(nextYear) == true){</span>
+<span class="fc bfc" id="L417" title="All 2 branches covered.">				for(int j = 1; j &lt; 360; j++) {</span>
+<span class="fc" id="L418">					s = getDayofWeek(reverseDayNumber(j, nextYear));</span>
+<span class="fc bfc" id="L419" title="All 2 branches covered.">					if(s == &quot;Sunday&quot;){</span>
+<span class="fc" id="L420">						sunday++;</span>
+					}
+				}
+<span class="fc" id="L423">			} else {</span>
+<span class="fc bfc" id="L424" title="All 2 branches covered.">				for(int j = 1; j &lt; 359; j++) {</span>
+<span class="fc" id="L425">					s = getDayofWeek(reverseDayNumber(j, nextYear));</span>
+<span class="fc bfc" id="L426" title="All 2 branches covered.">					if(s == &quot;Sunday&quot;){</span>
+<span class="fc" id="L427">						sunday++;</span>
+					}
+				}				
+			}
+		}
+		
+<span class="fc bfc" id="L433" title="All 2 branches covered.">		if(calculateDayNumber(date) == getXmas(date)) {</span>
+			
+<span class="fc" id="L435">			sunday = 0;</span>
+			
+		}
+		
+<span class="fc bfc" id="L439" title="All 2 branches covered.">		if(getDayofWeek(date) == &quot;Sunday&quot;) {</span>
+<span class="fc" id="L440">			sunday--;</span>
+		}
+		
+<span class="fc" id="L443">		return sunday;</span>
+	}
+	
+	//returns how many shopping days are between given date and xmas (excludes sundays, thanksgiving, and xmas)
+	public static int getNumShopping(String date) {
+		/*
+		 * determine number of sundays between date and xmas
+		 * determine thanksgiving
+		 * calculateDayNumber(getXmas(initDate)) - calculateDayNumber(initDate) - thanksgiving if before - sundays;
+		 */
+<span class="fc" id="L453">		int shoppingDays = 0;</span>
+<span class="fc" id="L454">		int xmas= getXmas(date);</span>
+<span class="fc" id="L455">		int oDate = calculateDayNumber(date);</span>
+<span class="fc" id="L456">		int thanks = 0;</span>
+<span class="fc" id="L457">		int sunday = getSunday(date);</span>
+
+<span class="fc" id="L459">		String nextYear = &quot;01/01/&quot; + (getYear(date) + 1);</span>
+		
+		
+<span class="fc bfc" id="L462" title="All 2 branches covered.">		if(oDate &gt; xmas) {</span>
+<span class="pc bpc" id="L463" title="1 of 4 branches missed.">			if(leapYear(date) == true &amp;&amp; leapYear(nextYear) == false) {</span>
+<span class="fc" id="L464">				thanks = 1;</span>
+<span class="fc" id="L465">				shoppingDays = (366 - oDate) + 359 - thanks - getSunday(date);</span>
+				
+<span class="pc bpc" id="L467" title="1 of 4 branches missed.">			} else if(leapYear(date) == false &amp;&amp; leapYear(nextYear) == true){</span>
+<span class="fc" id="L468">				thanks = 1;</span>
+<span class="fc" id="L469">				shoppingDays = (365 - oDate) + 360 - thanks - getSunday(date);</span>
+<span class="pc bpc" id="L470" title="2 of 4 branches missed.">			}else if(leapYear(date) == false &amp;&amp; leapYear(nextYear) == false) {</span>
+<span class="fc" id="L471">				thanks = 1;</span>
+<span class="fc" id="L472">				shoppingDays = (365 - oDate) + 359 - thanks - getSunday(date);</span>
+			}
+			
+<span class="fc bfc" id="L475" title="All 2 branches covered.">		} else if(calculateDayNumber(date) == getXmas(date)){</span>
+<span class="fc" id="L476">			shoppingDays = 0;</span>
+<span class="fc" id="L477">		} else{</span>
+<span class="fc bfc" id="L478" title="All 2 branches covered.">			if(calculateDayNumber(date) &lt; getThanks(date)) {</span>
+<span class="fc" id="L479">				thanks = 1;</span>
+<span class="fc" id="L480">			} else {</span>
+<span class="fc" id="L481">				thanks = 0;</span>
+			}
+<span class="fc" id="L483">			shoppingDays = xmas - oDate - thanks - getSunday(date);</span>
+		}
+		
+		
+<span class="fc" id="L487">		return shoppingDays;</span>
+		
+	}
+	
+	public static String getZodiac(String date) {
+		
+<span class="fc" id="L493">		int zDate = calculateDayNumber(date);</span>
+<span class="fc" id="L494">		String zodiac = &quot;&quot;;</span>
+		
+<span class="fc bfc" id="L496" title="All 2 branches covered.">		if(leapYear(date) == true) {</span>
+<span class="fc bfc" id="L497" title="All 4 branches covered.">			if(81 &lt;= zDate &amp;&amp; zDate &lt; 111) {</span>
+<span class="fc" id="L498">				zodiac = &quot;Aries&quot;;</span>
+			}
+			
+<span class="fc bfc" id="L501" title="All 4 branches covered.">			if(111 &lt;= zDate &amp;&amp; zDate &lt; 142) {</span>
+<span class="fc" id="L502">				zodiac = &quot;Taurus&quot;;</span>
+			}
+			
+<span class="fc bfc" id="L505" title="All 4 branches covered.">			if(142 &lt;= zDate &amp;&amp; zDate &lt; 173) {</span>
+<span class="fc" id="L506">				zodiac = &quot;Gemini&quot;;</span>
+			}
+			
+<span class="fc bfc" id="L509" title="All 4 branches covered.">			if(173 &lt;= zDate &amp;&amp; zDate &lt; 203) {</span>
+<span class="fc" id="L510">				zodiac = &quot;Cancer&quot;;</span>
+			}
+			
+<span class="fc bfc" id="L513" title="All 4 branches covered.">			if(203 &lt;= zDate &amp;&amp; zDate &lt; 236) {</span>
+<span class="fc" id="L514">				zodiac = &quot;Leo&quot;;</span>
+			}
+			
+<span class="fc bfc" id="L517" title="All 4 branches covered.">			if(236 &lt;= zDate &amp;&amp; zDate &lt; 267) {</span>
+<span class="fc" id="L518">				zodiac = &quot;Virgo&quot;;</span>
+			}
+			
+<span class="fc bfc" id="L521" title="All 4 branches covered.">			if(267 &lt;= zDate &amp;&amp; zDate &lt; 297) {</span>
+<span class="fc" id="L522">				zodiac = &quot;Libra&quot;;</span>
+			}
+			
+<span class="fc bfc" id="L525" title="All 4 branches covered.">			if(297 &lt;= zDate &amp;&amp; zDate &lt; 327) {</span>
+<span class="fc" id="L526">				zodiac = &quot;Scorpio&quot;;</span>
+			}
+			
+<span class="fc bfc" id="L529" title="All 4 branches covered.">			if(327 &lt;= zDate &amp;&amp; zDate &lt; 357) {</span>
+<span class="fc" id="L530">				zodiac = &quot;Sagittarius&quot;;</span>
+			}
+			
+<span class="pc bpc" id="L533" title="1 of 4 branches missed.">			if(357 &lt;= zDate || zDate &lt; 20) {</span>
+<span class="fc" id="L534">				zodiac = &quot;Capricorn&quot;;</span>
+			}
+			
+<span class="pc bpc" id="L537" title="1 of 4 branches missed.">			if(20 &lt;= zDate &amp;&amp; zDate &lt; 50) {</span>
+<span class="fc" id="L538">				zodiac = &quot;Aquarius&quot;;</span>
+			}
+			
+<span class="fc bfc" id="L541" title="All 4 branches covered.">			if(50 &lt;= zDate &amp;&amp; zDate &lt; 81) {</span>
+<span class="fc" id="L542">				zodiac = &quot;Pisces&quot;;</span>
+			}
+<span class="fc" id="L544">		} else {</span>
+		
+<span class="fc bfc" id="L546" title="All 4 branches covered.">			if(80 &lt;= zDate &amp;&amp; zDate &lt; 110) {</span>
+<span class="fc" id="L547">				zodiac = &quot;Aries&quot;;</span>
+			}
+			
+<span class="fc bfc" id="L550" title="All 4 branches covered.">			if(110 &lt;= zDate &amp;&amp; zDate &lt; 141) {</span>
+<span class="fc" id="L551">				zodiac = &quot;Taurus&quot;;</span>
+			}
+			
+<span class="fc bfc" id="L554" title="All 4 branches covered.">			if(141 &lt;= zDate &amp;&amp; zDate &lt; 172) {</span>
+<span class="fc" id="L555">				zodiac = &quot;Gemini&quot;;</span>
+			}
+			
+<span class="fc bfc" id="L558" title="All 4 branches covered.">			if(172 &lt;= zDate &amp;&amp; zDate &lt; 202) {</span>
+<span class="fc" id="L559">				zodiac = &quot;Cancer&quot;;</span>
+			}
+			
+<span class="fc bfc" id="L562" title="All 4 branches covered.">			if(202 &lt;= zDate &amp;&amp; zDate &lt; 235) {</span>
+<span class="fc" id="L563">				zodiac = &quot;Leo&quot;;</span>
+			}
+			
+<span class="fc bfc" id="L566" title="All 4 branches covered.">			if(235 &lt;= zDate &amp;&amp; zDate &lt; 266) {</span>
+<span class="fc" id="L567">				zodiac = &quot;Virgo&quot;;</span>
+			}
+			
+<span class="fc bfc" id="L570" title="All 4 branches covered.">			if(266 &lt;= zDate &amp;&amp; zDate &lt; 296) {</span>
+<span class="fc" id="L571">				zodiac = &quot;Libra&quot;;</span>
+			}
+			
+<span class="fc bfc" id="L574" title="All 4 branches covered.">			if(296 &lt;= zDate &amp;&amp; zDate &lt; 326) {</span>
+<span class="fc" id="L575">				zodiac = &quot;Scorpio&quot;;</span>
+			}
+			
+<span class="fc bfc" id="L578" title="All 4 branches covered.">			if(326 &lt;= zDate &amp;&amp; zDate &lt; 356) {</span>
+<span class="fc" id="L579">				zodiac = &quot;Sagittarius&quot;;</span>
+			}
+			
+<span class="pc bpc" id="L582" title="1 of 4 branches missed.">			if(356 &lt;= zDate || zDate &lt; 20) {</span>
+<span class="fc" id="L583">				zodiac = &quot;Capricorn&quot;;</span>
+			}
+			
+<span class="pc bpc" id="L586" title="1 of 4 branches missed.">			if(20 &lt;= zDate &amp;&amp; zDate &lt; 50) {</span>
+<span class="fc" id="L587">				zodiac = &quot;Aquarius&quot;;</span>
+			}
+			
+<span class="fc bfc" id="L590" title="All 4 branches covered.">			if(50 &lt;= zDate &amp;&amp; zDate &lt; 80) {</span>
+<span class="fc" id="L591">				zodiac = &quot;Pisces&quot;;</span>
+			}
+		}
+		
+<span class="fc" id="L595">		return zodiac;</span>
+	}
+	
+	//returns determines the date of thanksgiving of given year.
+	public static int getThanks(String date) {
+		/*
+		 *scroll through every day of november
+		 *	check to see if its a thursday
+		 *		if 4th thursday return date 
+		 */
+<span class="fc" id="L605">		int thanksgivingNumber = 0;</span>
+		
+<span class="pc bpc" id="L607" title="1 of 2 branches missed.">		for(int i = 305; i &lt; 335; i++) {</span>
+<span class="fc" id="L608">			String thur = getDayofWeek(reverseDayNumber(i, date));</span>
+			
+<span class="fc bfc" id="L610" title="All 2 branches covered.">			if(thur == &quot;Thursday&quot;) {</span>
+<span class="fc" id="L611">				thanksgivingNumber = i + 21;</span>
+<span class="fc" id="L612">				break;</span>
+			} 
+		}
+		
+<span class="fc" id="L616">		return thanksgivingNumber;</span>
+	}
+
+	//returns number day of christmas
+	public static int getXmas(String date) {
+        int x;
+		
+<span class="fc bfc" id="L623" title="All 2 branches covered.">		if(leapYear(date) == true){</span>
+<span class="fc" id="L624">            x = 360;</span>
+<span class="fc" id="L625">        } else{</span>
+<span class="fc" id="L626">            x = 359;</span>
+        }
+
+<span class="fc" id="L629">        return x;</span>
+	}
+	
+	//returns given date as a string in following format: [Day of Week] [Month] [Day + (st || nd || rd || th), [year]
+	public static String finalDate(String date) {
+<span class="fc" id="L634">		String finDate = getDayofWeek(date) + &quot; &quot; + getMonthS(date) + &quot; &quot; + getDayS(date) + &quot;, &quot; + getYear(date);</span>
+<span class="fc" id="L635">        return finDate;</span>
+	}
+	
+	//return number for date
+	public static int calculateDayNumber(String date) {
+		
+<span class="fc" id="L641">		int jan = 0;</span>
+<span class="fc" id="L642">		int feb = 31;</span>
+<span class="fc" id="L643">		int mar = 59;</span>
+<span class="fc" id="L644">		int apr = 90;</span>
+<span class="fc" id="L645">		int may = 120;</span>
+<span class="fc" id="L646">		int jun = 151;</span>
+<span class="fc" id="L647">		int jul = 181;</span>
+<span class="fc" id="L648">		int aug = 212;</span>
+<span class="fc" id="L649">		int sep = 243;</span>
+<span class="fc" id="L650">		int oct = 273;</span>
+<span class="fc" id="L651">		int nov = 304;</span>
+<span class="fc" id="L652">		int dec = 334;</span>
+<span class="fc" id="L653">		int monthValue = 0;</span>
+
+<span class="pc bpc" id="L655" title="1 of 13 branches missed.">        switch(getMonth(date)){</span>
+            case 1:
+<span class="fc" id="L657">                monthValue = jan;</span>
+<span class="fc" id="L658">                break;</span>
+            case 2:
+<span class="fc" id="L660">                monthValue = feb;</span>
+<span class="fc" id="L661">                break;</span>
+            case 3:
+<span class="fc" id="L663">                monthValue = mar;</span>
+<span class="fc" id="L664">                break;</span>
+            case 4:
+<span class="fc" id="L666">                monthValue = apr;</span>
+<span class="fc" id="L667">                break;</span>
+            case 5:
+<span class="fc" id="L669">                monthValue = may;</span>
+<span class="fc" id="L670">                break;</span>
+            case 6:
+<span class="fc" id="L672">                monthValue = jun;</span>
+<span class="fc" id="L673">                break;</span>
+            case 7:
+<span class="fc" id="L675">                monthValue = jul;</span>
+<span class="fc" id="L676">                break;</span>
+            case 8:
+<span class="fc" id="L678">                monthValue = aug;</span>
+<span class="fc" id="L679">                break;</span>
+            case 9:
+<span class="fc" id="L681">                monthValue = sep;</span>
+<span class="fc" id="L682">                break;</span>
+            case 10:
+<span class="fc" id="L684">                monthValue = oct;</span>
+<span class="fc" id="L685">                break;</span>
+            case 11:
+<span class="fc" id="L687">                monthValue = nov;</span>
+<span class="fc" id="L688">                 break;</span>
+            case 12:
+<span class="fc" id="L690">                monthValue = dec;</span>
+                break;
+        }
+<span class="fc bfc" id="L693" title="All 4 branches covered.">        if((leapYear(date) == true) &amp;&amp; (getMonth(date) &gt;= 3)){</span>
+<span class="fc" id="L694">            monthValue = monthValue + 1;</span>
+        }
+
+<span class="fc" id="L697">        int dayNum = monthValue + getDay(date);</span>
+<span class="fc" id="L698">        return dayNum;</span>
+	}
+	
+	//return string for given date
+	public static String reverseDayNumber(int otherDate, String date) {
+<span class="fc" id="L703">		String sd = &quot;&quot;;</span>
+<span class="fc" id="L704">		String sm = &quot;&quot;;</span>
+<span class="fc" id="L705">		int day = 0;</span>
+<span class="fc" id="L706">		int month = 0;</span>
+<span class="fc" id="L707">		int year = getYear(date);</span>
+		
+<span class="fc" id="L709">		int feb = 31;</span>
+<span class="fc" id="L710">		int mar = 59;</span>
+<span class="fc" id="L711">		int apr = 90;</span>
+<span class="fc" id="L712">		int may = 120;</span>
+<span class="fc" id="L713">		int jun = 151;</span>
+<span class="fc" id="L714">		int jul = 181;</span>
+<span class="fc" id="L715">		int aug = 212;</span>
+<span class="fc" id="L716">		int sep = 243;</span>
+<span class="fc" id="L717">		int oct = 273;</span>
+<span class="fc" id="L718">		int nov = 304;</span>
+<span class="fc" id="L719">		int dec = 334;</span>
+		
+<span class="fc bfc" id="L721" title="All 2 branches covered.">		if(leapYear(date) == true) {</span>
+<span class="fc" id="L722">			mar = 60;</span>
+<span class="fc" id="L723">			apr = 91;</span>
+<span class="fc" id="L724">			may = 121;</span>
+<span class="fc" id="L725">			jun = 152;</span>
+<span class="fc" id="L726">			jul = 182;</span>
+<span class="fc" id="L727">			aug = 213;</span>
+<span class="fc" id="L728">			sep = 244;</span>
+<span class="fc" id="L729">			oct = 274;</span>
+<span class="fc" id="L730">			nov = 305;</span>
+<span class="fc" id="L731">			dec = 335;</span>
+		}
+		
+<span class="fc bfc" id="L734" title="All 2 branches covered.">		if(otherDate &lt;= feb) {</span>
+<span class="fc" id="L735">			day = otherDate;</span>
+<span class="fc" id="L736">			sm = &quot;01&quot;;</span>
+<span class="fc bfc" id="L737" title="All 2 branches covered.">			if(day &lt; 10) {</span>
+<span class="fc" id="L738">				sd = &quot;0&quot; + day;</span>
+<span class="fc" id="L739">			} else {</span>
+<span class="fc" id="L740">				sd = Integer.toString(day);</span>
+			}
+<span class="fc" id="L742">		}</span>
+		
+<span class="pc bpc" id="L744" title="1 of 4 branches missed.">		else if(feb &lt; otherDate &amp;&amp; otherDate &lt;= mar) {</span>
+<span class="fc" id="L745">			day = otherDate - feb;</span>
+<span class="fc" id="L746">			sm = &quot;02&quot;;</span>
+<span class="fc bfc" id="L747" title="All 2 branches covered.">			if(day &lt; 10) {</span>
+<span class="fc" id="L748">				sd = &quot;0&quot; + day;</span>
+<span class="fc" id="L749">			} else {</span>
+<span class="fc" id="L750">				sd = Integer.toString(day);</span>
+			}
+<span class="fc" id="L752">		}</span>
+		
+<span class="pc bpc" id="L754" title="1 of 4 branches missed.">		else if(mar &lt; otherDate &amp;&amp; otherDate &lt;= apr) {</span>
+<span class="fc" id="L755">			day = otherDate - mar;</span>
+<span class="fc" id="L756">			sm = &quot;03&quot;;</span>
+<span class="fc bfc" id="L757" title="All 2 branches covered.">			if(day &lt; 10) {</span>
+<span class="fc" id="L758">				sd = &quot;0&quot; + day;</span>
+<span class="fc" id="L759">			} else {</span>
+<span class="fc" id="L760">				sd = Integer.toString(day);</span>
+			}
+<span class="fc" id="L762">		}</span>
+		
+<span class="pc bpc" id="L764" title="1 of 4 branches missed.">		else if(apr &lt; otherDate &amp;&amp; otherDate&lt;= may) {</span>
+<span class="fc" id="L765">			day = otherDate - apr;</span>
+<span class="fc" id="L766">			sm = &quot;04&quot;;</span>
+<span class="fc bfc" id="L767" title="All 2 branches covered.">			if(day &lt; 10) {</span>
+<span class="fc" id="L768">				sd = &quot;0&quot; + day;</span>
+<span class="fc" id="L769">			} else {</span>
+<span class="fc" id="L770">				sd = Integer.toString(day);</span>
+			}
+<span class="fc" id="L772">		}</span>
+		
+<span class="pc bpc" id="L774" title="1 of 4 branches missed.">		else if(may &lt; otherDate &amp;&amp; otherDate &lt;= jun) {</span>
+<span class="fc" id="L775">			day = otherDate - may;</span>
+<span class="fc" id="L776">			sm = &quot;05&quot;;</span>
+<span class="fc bfc" id="L777" title="All 2 branches covered.">			if(day &lt; 10) {</span>
+<span class="fc" id="L778">				sd = &quot;0&quot; + day;</span>
+<span class="fc" id="L779">			} else {</span>
+<span class="fc" id="L780">				sd = Integer.toString(day);</span>
+			}
+<span class="fc" id="L782">		}</span>
+		
+<span class="pc bpc" id="L784" title="1 of 4 branches missed.">		else if(jun &lt; otherDate &amp;&amp; otherDate &lt;= jul) {</span>
+<span class="fc" id="L785">			day = otherDate - jun;</span>
+<span class="fc" id="L786">			sm = &quot;06&quot;;</span>
+<span class="fc bfc" id="L787" title="All 2 branches covered.">			if(day &lt; 10) {</span>
+<span class="fc" id="L788">				sd = &quot;0&quot; + day;</span>
+<span class="fc" id="L789">			} else {</span>
+<span class="fc" id="L790">				sd = Integer.toString(day);</span>
+			}
+<span class="fc" id="L792">		}</span>
+		
+<span class="pc bpc" id="L794" title="1 of 4 branches missed.">		else if(jul &lt; otherDate &amp;&amp; otherDate &lt;= aug) {</span>
+<span class="fc" id="L795">			day = otherDate - jul;</span>
+<span class="fc" id="L796">			sm = &quot;07&quot;;</span>
+<span class="fc bfc" id="L797" title="All 2 branches covered.">			if(day &lt; 10) {</span>
+<span class="fc" id="L798">				sd = &quot;0&quot; + day;</span>
+<span class="fc" id="L799">			} else {</span>
+<span class="fc" id="L800">				sd = Integer.toString(day);</span>
+			}
+<span class="fc" id="L802">		}</span>
+		
+<span class="pc bpc" id="L804" title="1 of 4 branches missed.">		else if(aug &lt; otherDate &amp;&amp; otherDate &lt;= sep) {</span>
+<span class="fc" id="L805">			day = otherDate - aug;</span>
+<span class="fc" id="L806">			sm = &quot;08&quot;;</span>
+<span class="fc bfc" id="L807" title="All 2 branches covered.">			if(day &lt; 10) {</span>
+<span class="fc" id="L808">				sd = &quot;0&quot; + day;</span>
+<span class="fc" id="L809">			} else {</span>
+<span class="fc" id="L810">				sd = Integer.toString(day);</span>
+			}
+<span class="fc" id="L812">		}</span>
+		
+<span class="pc bpc" id="L814" title="1 of 4 branches missed.">		else if(sep &lt; otherDate &amp;&amp; otherDate &lt;= oct) {</span>
+<span class="fc" id="L815">			day = otherDate - sep;</span>
+<span class="fc" id="L816">			sm = &quot;09&quot;;</span>
+<span class="fc bfc" id="L817" title="All 2 branches covered.">			if(day &lt; 10) {</span>
+<span class="fc" id="L818">				sd = &quot;0&quot; + day;</span>
+<span class="fc" id="L819">			} else {</span>
+<span class="fc" id="L820">				sd = Integer.toString(day);</span>
+			}
+<span class="fc" id="L822">		}</span>
+		
+<span class="pc bpc" id="L824" title="1 of 4 branches missed.">		else if(oct &lt; otherDate &amp;&amp; otherDate &lt;= nov) {</span>
+<span class="fc" id="L825">			day = otherDate - oct;</span>
+<span class="fc" id="L826">			sm = &quot;10&quot;;</span>
+<span class="fc bfc" id="L827" title="All 2 branches covered.">			if(day &lt; 10) {</span>
+<span class="fc" id="L828">				sd = &quot;0&quot; + day;</span>
+<span class="fc" id="L829">			} else {</span>
+<span class="fc" id="L830">				sd = Integer.toString(day);</span>
+			}
+<span class="fc" id="L832">		}</span>
+		
+<span class="pc bpc" id="L834" title="1 of 4 branches missed.">		else if(nov &lt; otherDate &amp;&amp; otherDate &lt;= dec) {</span>
+<span class="fc" id="L835">			day = otherDate - nov;</span>
+<span class="fc" id="L836">			sm = &quot;11&quot;;</span>
+<span class="fc bfc" id="L837" title="All 2 branches covered.">			if(day &lt; 10) {</span>
+<span class="fc" id="L838">				sd = &quot;0&quot; + day;</span>
+<span class="fc" id="L839">			} else {</span>
+<span class="fc" id="L840">				sd = Integer.toString(day);</span>
+			}
+<span class="fc" id="L842">		}</span>
+		
+<span class="pc bpc" id="L844" title="1 of 2 branches missed.">		else if(dec &lt; otherDate) {</span>
+<span class="fc" id="L845">			day = otherDate - dec;</span>
+<span class="fc" id="L846">			sm = &quot;12&quot;;</span>
+<span class="fc bfc" id="L847" title="All 2 branches covered.">			if(day &lt; 10) {</span>
+<span class="fc" id="L848">				sd = &quot;0&quot; + day;</span>
+<span class="fc" id="L849">			} else {</span>
+<span class="fc" id="L850">				sd = Integer.toString(day);</span>
+			}
+		}
+<span class="fc" id="L853">		String rdate = sd + &quot;/&quot; + sm + &quot;/&quot; + year;</span>
+<span class="fc" id="L854">		return rdate;</span>
+	}
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span>calendarTest (Dec 12, 2020 6:30:34 PM)</div></body></html>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>GUI.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">calendarTest (Dec 12, 2020 6:30:34 PM)</a> &gt; <a href="../../index.html" class="el_group">Calendar</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">default</a> &gt; <span class="el_source">GUI.java</span></div><h1>GUI.java</h1><pre class="source lang-java linenums">import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class GUI implements ActionListener {
+	
+<span class="nc" id="L7">	private JLabel calendarTitle = new JLabel(&quot;Calendar Calculator&quot;);</span>
+<span class="nc" id="L8">	private JLabel formatTitle = new JLabel(&quot;Please format the date: dd/mm/yyy&quot;);</span>
+<span class="nc" id="L9">    private JLabel initDate = new JLabel(&quot;Initial Date: &quot;);</span>
+<span class="nc" id="L10">    private JLabel prevDate = new JLabel(&quot;Previous Date: &quot;);</span>
+<span class="nc" id="L11">    private JLabel nextDate = new JLabel(&quot;Next Date: &quot;);</span>
+<span class="nc" id="L12">    private JLabel numShop = new JLabel(&quot;Number of Shopping Days Until Christmas: &quot;);</span>
+<span class="nc" id="L13">    private JLabel zodiac = new JLabel(&quot;Zodiac: &quot;);</span>
+<span class="nc" id="L14">    private JFrame frame = new JFrame();</span>
+<span class="nc" id="L15">    private JLabel error = new JLabel();</span>
+<span class="nc" id="L16">    private JTextField input = new JTextField(10);</span>
+
+<span class="nc" id="L18">    public GUI() {</span>
+    	
+    	
+        // the clickable button
+<span class="nc" id="L22">        JButton button = new JButton(&quot;Calculate&quot;);</span>
+<span class="nc" id="L23">        button.addActionListener(this);</span>
+        
+<span class="nc" id="L25">        JButton clear = new JButton(&quot;Clear&quot;);</span>
+<span class="nc" id="L26">        clear.addActionListener(this);;</span>
+
+        // the panel with the button and text
+<span class="nc" id="L29">        JPanel panel = new JPanel();</span>
+<span class="nc" id="L30">        panel.setBorder(BorderFactory.createEmptyBorder(30, 30, 10, 30));</span>
+<span class="nc" id="L31">        panel.setLayout(new GridLayout(0, 1));</span>
+<span class="nc" id="L32">        panel.add(calendarTitle);</span>
+<span class="nc" id="L33">        panel.add(formatTitle);</span>
+<span class="nc" id="L34">        panel.add(input);</span>
+<span class="nc" id="L35">        panel.add(button);</span>
+<span class="nc" id="L36">        panel.add(initDate);</span>
+<span class="nc" id="L37">        panel.add(prevDate);</span>
+<span class="nc" id="L38">        panel.add(nextDate);</span>
+<span class="nc" id="L39">        panel.add(numShop);</span>
+<span class="nc" id="L40">        panel.add(zodiac);</span>
+<span class="nc" id="L41">        panel.add(error);</span>
+
+        // set up the frame and display it
+<span class="nc" id="L44">        frame.add(panel, BorderLayout.CENTER);</span>
+<span class="nc" id="L45">        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);</span>
+<span class="nc" id="L46">        frame.setTitle(&quot;GUI&quot;);</span>
+<span class="nc" id="L47">        frame.pack();</span>
+<span class="nc" id="L48">        frame.setVisible(true);</span>
+<span class="nc" id="L49">    }</span>
+
+    // process the button
+    public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L53">        String var = input.getText();</span>
+        
+<span class="nc bnc" id="L55" title="All 2 branches missed.">        if(isFormat(var) == true){</span>
+<span class="nc" id="L56">            initDate.setText(&quot;Initial Date: &quot; + CalendarCalc.finalDate(var));</span>
+<span class="nc" id="L57">            prevDate.setText(&quot;Previous Date: &quot; + CalendarCalc.previousDate(var));</span>
+<span class="nc" id="L58">            nextDate.setText(&quot;Next Date: &quot; + CalendarCalc.nextDate(var));</span>
+<span class="nc" id="L59">            numShop.setText(&quot;# of Shopping Days 'til Xmas: &quot; + CalendarCalc.getNumShopping(var));</span>
+<span class="nc" id="L60">            zodiac.setText(&quot;Zodiac: &quot; + CalendarCalc.getZodiac(var));</span>
+<span class="nc" id="L61">        	error.setText(&quot;Success!&quot;);</span>
+<span class="nc bnc" id="L62" title="All 2 branches missed.">        } else if(isFormat(var) == false) {</span>
+<span class="nc" id="L63">            initDate.setText(&quot;Initial Date: &quot; );</span>
+<span class="nc" id="L64">            prevDate.setText(&quot;Previous Date: &quot;);</span>
+<span class="nc" id="L65">            nextDate.setText(&quot;Next Date: &quot;);</span>
+<span class="nc" id="L66">            numShop.setText(&quot;# of Shopping Days 'til Xmas: &quot;);</span>
+<span class="nc" id="L67">            zodiac.setText(&quot;Zodiac: &quot;);</span>
+<span class="nc" id="L68">        	error.setText(&quot;Error: not a valid format! Must be dd/mm/yyy!&quot;);</span>
+        }
+
+
+<span class="nc" id="L72">    }</span>
+
+    public boolean isFormat(String input) {
+    	try {
+<span class="nc bnc" id="L76" title="All 2 branches missed.">    		if(input.length() == 10) {</span>
+<span class="nc" id="L77">	    		String check = input.substring(0, 2) + input.substring(3, 5) + input.substring(6,10);</span>
+<span class="nc" id="L78">	    		int date = Integer.parseInt(check);</span>
+<span class="nc" id="L79">	    		return true;</span>
+<span class="nc bnc" id="L80" title="All 2 branches missed.">    		} else if(input.length() &lt; 10) {</span>
+<span class="nc" id="L81">    			return false;</span>
+<span class="nc bnc" id="L82" title="All 2 branches missed.">    		} else if(input.length() &gt; 10) {</span>
+<span class="nc" id="L83">    			return false;</span>
+    		} else {
+<span class="nc" id="L85">    			return false;</span>
+    		}
+<span class="nc" id="L87">    	} catch(NumberFormatException e){</span>
+<span class="nc" id="L88">    		return false;</span>
+    	}
+    }
+    // create one Frame
+    public static void main(String[] args) {
+<span class="nc" id="L93">        new GUI();</span>
+<span class="nc" id="L94">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span>calendarTest (Dec 12, 2020 6:30:34 PM)</div></body></html>
